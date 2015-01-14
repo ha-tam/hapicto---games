@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<body>
+	<div ng-style="HeaderStyle()" resize>
+		<p>Score : {{Score}} -- Touch fail : {{TouchFail}}</p>
+	</div>
+
+		<div class="timer" ng-style="timerStyle()" resize>
+			<svg width="100%" height="100%">
+					<rect ng-repeat="r in rects" ng-attr-x="{{r.x}}" ng-attr-y="{{r.y}}" ng-attr-height="{{r.height}}" ng-attr-width="{{r.width}}" ng-style="rectStyle($index, r)" resize>
+							<animate attributeName="width" from="0" to="{{r.width}}" dur="1s" repeatCount="1" begin="DOMNodeInserted" />
+					</rect>
+			</svg>
+		</div>
+
+	<div ng-style="ContentStyle()" resize>	
+		<svg width="100%" height="100%" style="border: 2px solid red;" ng-click="svgClic()">
+			<circle ng-repeat="p in points" ng-attr-r="{{p.r}}" ng-attr-cx="{{p.x}}" ng-attr-cy="{{p.y}}" ng-click="circleClick($index, p)" stroke="black" stroke-width="1" ng-style="circleStyle(p)" resize>
+				<animate attributeType="CSS" attributeName="opacity" from="0" to="1" dur="750ms" begin="DOMNodeInserted"/>
+			</circle>
+			<text text-anchor="middle" x="0" y="0">
+				<tspan x="50%" y="50%">
+					{{Texts}}
+				</tspan>
+			</text>
+		</svg>
+	</div>
+</body>
+</html>
